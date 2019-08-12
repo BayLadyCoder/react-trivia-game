@@ -1,0 +1,12 @@
+.TriviaGame {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+}
+.TriviaGame h1 {
+    color: #fff;
+
+}
