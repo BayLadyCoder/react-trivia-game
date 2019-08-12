@@ -8,7 +8,8 @@ export class NewGameForm extends Component {
     super(props);
     this.state = {
       totalQuestions: "5",
-      category: ""
+      category: "",
+      id: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,14 +17,16 @@ export class NewGameForm extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    e.target.name === "category"
+      ? this.setState({ id: e.target.id })
+      : console.log(e.target.value);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const newGame = this.state;
     this.props.create(newGame);
-    this.setState({ totalQuestions: "5", category: "" });
+    this.setState({ totalQuestions: "5", category: "", id: "" });
   }
 
   render() {
@@ -64,7 +67,7 @@ export class NewGameForm extends Component {
                   name="category"
                   checked={this.state.category === cat.name ? true : false}
                   key={cat.name}
-                  id={cat.name}
+                  id={cat.id}
                 />
                 {cat.name}
               </label>
