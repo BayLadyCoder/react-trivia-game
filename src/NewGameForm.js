@@ -47,14 +47,16 @@ export class NewGameForm extends Component {
               value={this.state.totalQuestions}
             >
               {totalQuestionSet.map(set => (
-                <option value={set}>{set}</option>
+                <option value={set} key={set}>
+                  {set}
+                </option>
               ))}
             </select>
           </div>
           <p className="ask">Choose a category</p>
           <div className="NewGameForm-categories">
             {this.props.trivia_categories.map(cat => (
-              <label className="NewGameForm-category">
+              <label key={cat.name} className="NewGameForm-category">
                 <input
                   type="radio"
                   onChange={this.handleChange}
