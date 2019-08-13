@@ -3,6 +3,7 @@ import "./GamePlay.css";
 import axios from "axios";
 import fixString from "./Helpers.js";
 import Play from "./Play";
+import GameEnd from "./GameEnd";
 
 export class GamePlay extends Component {
   constructor(props) {
@@ -12,8 +13,9 @@ export class GamePlay extends Component {
       ready: false,
       curQuestion: "",
       curAnswers: [],
-      correctAnwer: "",
-      curQ: 0
+      correctAnswer: "",
+      curQ: 0,
+      isDone: false
     };
     this.handleClicked = this.handleClicked.bind(this);
   }
@@ -37,7 +39,11 @@ export class GamePlay extends Component {
   async handleClicked() {
     console.log("CLICKED EVENT");
     await this.setState({ curQ: this.state.curQ + 1 });
-    this.getCurData(this.state.curQ);
+    if (this.state.curQ < this.state.ready.length) {
+      this.getCurData(this.state.curQ);
+    } else {
+      this.setState({ isDone: true });
+    }
   }
 
   getCurData(curQ) {
@@ -58,17 +64,25 @@ export class GamePlay extends Component {
   }
 
   render() {
-    console.log("curAnswers", this.state.curAnswers);
+    console.log("state", this.state);
+
     console.log("RENDER GAMEPLAY");
     return (
       <div className="GamePlay">
-        {this.state.curAnswers !== [] ? (
-          <div>
-            <Play curQ={this.state.curQuestion} curA={this.state.curAnswers} />
-            <button onClick={this.handleClicked}>NEXT</button>
-          </div>
+        {!this.state.isDone ? (
+          this.state.curAnswers !== [] ? (
+            <div>
+              <Play
+                curQ={this.state.curQuestion}
+                curA={this.state.curAnswers}
+              />
+              <button onClick={this.handleClicked}>NEXT</button>
+            </div>
+          ) : (
+            <div>Loading</div>
+          )
         ) : (
-          <div>Loading</div>
+          <GameEnd />
         )}
       </div>
     );

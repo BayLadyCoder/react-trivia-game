@@ -21,8 +21,6 @@ export class TriviaGame extends Component {
 
   create(newGame) {
     this.setState({ newGame: newGame, ready: true });
-
-    // console.log(newGame);
   }
 
   render() {
