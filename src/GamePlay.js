@@ -15,6 +15,9 @@ export class GamePlay extends Component {
       curAnswers: [],
       correctAnswer: "",
       curQ: 0,
+      score: 0,
+      totalQ: this.props.totalQ,
+      category: this.props.catName,
       isDone: false
     };
     this.handleClicked = this.handleClicked.bind(this);
@@ -47,11 +50,10 @@ export class GamePlay extends Component {
   }
 
   getCurData(curQ) {
-    console.log(curQ);
     let newData = this.state.ready[curQ];
-    console.log("newData", newData);
+    // console.log("newData", newData);
     let question = newData[0];
-    console.log("questions", question);
+    // console.log("questions", question);
     let correctAnswer = newData[1];
     let incorrectAnswers = newData[2];
     let allAnswers = [correctAnswer, ...incorrectAnswers];
@@ -67,6 +69,9 @@ export class GamePlay extends Component {
     console.log("state", this.state);
 
     console.log("RENDER GAMEPLAY");
+
+    let totalQ = this.state.totalQ;
+    let category = this.state.category;
     return (
       <div className="GamePlay">
         {!this.state.isDone ? (
@@ -82,7 +87,11 @@ export class GamePlay extends Component {
             <div>Loading</div>
           )
         ) : (
-          <GameEnd />
+          <GameEnd
+            totalQ={totalQ}
+            category={category}
+            score={this.state.score}
+          />
         )}
       </div>
     );
