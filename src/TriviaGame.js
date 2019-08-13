@@ -14,13 +14,21 @@ export class TriviaGame extends Component {
       ready: false,
       curQuestion: "",
       curAnswers: "",
-      curQ: 0
+      curQ: 0,
+      startNewGame: false
     };
     this.create = this.create.bind(this);
+    this.handleNewGame = this.handleNewGame.bind(this);
   }
 
   create(newGame) {
+    this.setState({ newGame: "", startNewGame: false });
     this.setState({ newGame: newGame, ready: true });
+  }
+
+  handleNewGame() {
+    this.setState({ newGame: { totalQuestions: 5, category: "", id: false } });
+    this.setState({ startNewGame: true });
   }
 
   render() {
@@ -28,11 +36,17 @@ export class TriviaGame extends Component {
     let id = this.state.newGame.id;
     let catName = this.state.newGame.category;
 
-    let game = !this.state.ready ? (
-      <NewGameForm create={this.create} />
-    ) : (
-      <GamePlay totalQ={totalQ} catId={id} catName={catName} />
-    );
+    let game =
+      !this.state.ready || this.state.startNewGame ? (
+        <NewGameForm create={this.create} />
+      ) : (
+        <GamePlay
+          totalQ={totalQ}
+          catId={id}
+          catName={catName}
+          newGameBtn={this.handleNewGame}
+        />
+      );
 
     return (
       <div className="TriviaGame">

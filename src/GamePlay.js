@@ -20,7 +20,7 @@ export class GamePlay extends Component {
       category: this.props.catName,
       isDone: false
     };
-    this.handleClicked = this.handleClicked.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
   async componentDidMount() {
@@ -39,7 +39,7 @@ export class GamePlay extends Component {
     this.getCurData(this.state.curQ);
   }
 
-  async handleClicked() {
+  async handleNext() {
     console.log("CLICKED EVENT");
     await this.setState({ curQ: this.state.curQ + 1 });
     if (this.state.curQ < this.state.ready.length) {
@@ -80,8 +80,12 @@ export class GamePlay extends Component {
               <Play
                 curQ={this.state.curQuestion}
                 curA={this.state.curAnswers}
+                corA={this.state.correctAnswer}
+                curQNum={this.state.curQ}
+                score={this.state.score}
+                totalQ={totalQ}
               />
-              <button onClick={this.handleClicked}>NEXT</button>
+              <button onClick={this.handleNext}>NEXT</button>
             </div>
           ) : (
             <div>Loading</div>
@@ -91,6 +95,7 @@ export class GamePlay extends Component {
             totalQ={totalQ}
             category={category}
             score={this.state.score}
+            newGame={this.props.newGameBtn}
           />
         )}
       </div>

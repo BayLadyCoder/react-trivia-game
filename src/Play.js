@@ -10,8 +10,13 @@ export class Play extends Component {
       arrAnswers = answers.split(",");
     }
 
+    let curQuestNum = this.props.curQNum + 1;
     return (
       <div className="Play">
+        <p>
+          Question {curQuestNum}/{this.props.totalQ}
+        </p>
+        <p>Score: {this.props.score}</p>
         <p>{this.props.curQ}</p>
         <ul>
           {arrAnswers.map(a => (

@@ -9,6 +9,7 @@ export class GameEnd extends Component {
         <div>
           Your Score: {this.props.score}/{this.props.totalQ}
         </div>
+        <button onClick={this.props.newGame}>New Game</button>
       </div>
     );
   }
