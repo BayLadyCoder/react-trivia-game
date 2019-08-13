@@ -4,9 +4,13 @@ function decode(string) {
 }
 
 function fixString(data) {
-  let questions = [];
-  let correctAns = [];
-  let incorrectAns = [];
+  let questions = [],
+    correctAns = [],
+    incorrectAns = [],
+    eachQ = [],
+    allQ = [];
+  let count = 1;
+
   data.map(d => {
     let q = decode(d.question);
     let ca = decode(d.correct_answer);
@@ -15,14 +19,17 @@ function fixString(data) {
     questions.push(q);
     correctAns.push(ca);
     incorrectAns.push(ica);
+
+    let strCount = "Q" + count.toString();
+    eachQ.push([q, ca, ica]);
+
+    count++;
   });
 
   let decoded = {
-    questions: questions,
-    correctAns: correctAns,
-    incorrectAns: incorrectAns
+    ready: eachQ
   };
-  console.log(decoded);
+  console.log("decoded", decoded);
   return decoded;
 }
 

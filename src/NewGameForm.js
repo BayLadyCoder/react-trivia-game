@@ -9,7 +9,12 @@ export class NewGameForm extends Component {
     this.state = {
       totalQuestions: "5",
       category: "",
-      id: ""
+      id: "",
+      data: "",
+      ready: false,
+      curQuestion: "",
+      curAnswers: "",
+      curQ: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
