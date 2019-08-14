@@ -68,6 +68,7 @@ export class NewGameForm extends Component {
                   checked={this.state.category === cat.name ? true : false}
                   key={cat.name}
                   id={cat.id}
+                  required={true}
                 />
                 {cat.name}
               </label>
