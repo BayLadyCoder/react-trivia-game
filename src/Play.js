@@ -83,67 +83,82 @@ export class Play extends Component {
   render() {
     return (
       <div className="Play">
-        <p>
-          Question {this.state.curQNum}/{this.props.totalQ}
-        </p>
-        <p>Score: {this.state.score}</p>
-        <p>{this.state.curQ}</p>
-        {this.state.curA.map(a => (
-          <form>
-            <label key={this.state.curQNum}>
-              <input
-                type="radio"
-                onChange={this.handleChange}
-                value={a}
-                name={this.state.curQNum}
-                checked={this.state.value === a ? true : false}
-                key={a}
-                id={a}
-                disabled={this.state.disabled}
-                required={true}
-              />
-              {a}
-            </label>
-          </form>
-        ))}
-        {this.state.didAnswer ? (
-          this.state.chosenAnswer === this.state.corA ? (
-            <div className="correct">
-              {this.state.chosenAnswer} is Correct
-              <br />
-              <button onClick={this.handleNext}>NEXT</button>
+        <div className="Play-scoreboard">
+          <p>
+            Question {this.state.curQNum}/{this.props.totalQ}
+          </p>
+          <p>Score: {this.state.score}</p>
+        </div>
+
+        <div className="Play-gameContainer">
+          <p className="Play-question">{this.state.curQ}</p>
+          <div className="Play-game center">
+            <div className="Play-game-answers">
+              {this.state.curA.map(a => (
+                <form>
+                  <label key={this.state.curQNum}>
+                    <input
+                      type="radio"
+                      onChange={this.handleChange}
+                      value={a}
+                      name={this.state.curQNum}
+                      checked={this.state.value === a ? true : false}
+                      key={a}
+                      id={a}
+                      disabled={this.state.disabled}
+                      required={true}
+                    />
+                    {a}
+                  </label>
+                </form>
+              ))}
             </div>
-          ) : (
-            <div className="incorrect">
-              {this.state.chosenAnswer} is Incorrect. The Answer is{" "}
-              {this.state.corA}
-              <br />
-              <button onClick={this.handleNext}>NEXT</button>
+            <div className="Play-game-button">
+              {this.state.didAnswer ? (
+                this.state.chosenAnswer === this.state.corA ? (
+                  <div className="Play-game-button correct">
+                    <p className="mb-5 mt-0 reveal-answer">
+                      <strong>{this.state.chosenAnswer}</strong> is Correct
+                    </p>
+                    <button
+                      className="Play-game-btnNext"
+                      onClick={this.handleNext}
+                    >
+                      NEXT
+                    </button>
+                  </div>
+                ) : (
+                  <div className="Play-game-button incorrect">
+                    <div className="center">
+                      <p className="mb-5 mt-0 reveal-answer">
+                        <strong>{this.state.chosenAnswer}</strong> is incorrect.
+                      </p>
+                      <p className="mb-5 mt-0 reveal-answer">
+                        The Answer is <strong>{this.state.corA}</strong>
+                      </p>
+                    </div>
+                    <button
+                      className="Play-game-btnNext"
+                      onClick={this.handleNext}
+                    >
+                      NEXT
+                    </button>
+                  </div>
+                )
+              ) : (
+                <button
+                  className="Play-game-button Play-game-btnAnswer"
+                  onClick={this.handleSubmit}
+                >
+                  Answer
+                </button>
+              )}
             </div>
-          )
-        ) : (
-          <button onClick={this.handleSubmit}>Answer</button>
-        )}
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 export default Play;
-
-//   <div className="NewGameForm-categories">
-//     {this.props.trivia_categories.map(cat => (
-//       <label key={cat.name} className="NewGameForm-category">
-//         <input
-//           type="radio"
-//           onChange={this.handleChange}
-//           value={cat.name}
-//           name="category"
-//           checked={this.state.category === cat.name ? true : false}
-//           key={cat.name}
-//           id={cat.id}
-//         />
-//         {cat.name}
-//       </label>
-//     ))}
-//   </div>
