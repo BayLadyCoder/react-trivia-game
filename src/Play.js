@@ -42,6 +42,10 @@ export class Play extends Component {
         chosenAnswer: this.state.value,
         disabled: true
       });
+      if (this.state.value === this.state.corA) {
+        this.setState({ score: this.state.score + 1 });
+      }
+
       this.setState({ value: null });
     }
   }
