@@ -12,9 +12,6 @@ export class TriviaGame extends Component {
       player: { curQuestion: 1, curScore: 0 },
       data: "",
       ready: false,
-      curQuestion: "",
-      curAnswers: "",
-      curQ: 0,
       startNewGame: false
     };
     this.create = this.create.bind(this);

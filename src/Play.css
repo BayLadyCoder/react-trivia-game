@@ -2,7 +2,16 @@
     color: #fff;
 }
 
-button {
-    color: #fff;
+.correct {
+    color: green;
 
+}
+
+.incorrect {
+    color: red;
+
+}
+
+.displayNone {
+    display:none;
 }
