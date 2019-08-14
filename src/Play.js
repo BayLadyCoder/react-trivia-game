@@ -95,8 +95,8 @@ export class Play extends Component {
           <div className="Play-game center">
             <div className="Play-game-answers">
               {this.state.curA.map(a => (
-                <form>
-                  <label key={this.state.curQNum}>
+                <form key={a}>
+                  <label key={a}>
                     <input
                       type="radio"
                       onChange={this.handleChange}
