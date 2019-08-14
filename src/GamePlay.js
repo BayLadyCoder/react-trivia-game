@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./GamePlay.css";
 import axios from "axios";
-import fixString from "./Helpers.js";
+import fixString, { shuffle } from "./Helpers.js";
 import Play from "./Play";
 import GameEnd from "./GameEnd";
 
@@ -55,10 +55,12 @@ export class GamePlay extends Component {
     let correctAnswer = newData[1];
     let incorrectAnswers = newData[2];
     let allAnswers = [correctAnswer, ...incorrectAnswers];
+    let shuffleAnswers = shuffle(allAnswers);
+    console.log(shuffleAnswers);
     this.setState({
       curQuestion: question,
       correctAnswer: correctAnswer,
-      curAnswers: allAnswers
+      curAnswers: shuffleAnswers
     });
   }
 

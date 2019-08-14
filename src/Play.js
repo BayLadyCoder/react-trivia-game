@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Play.css";
+import { shuffle } from "./Helpers";
 
 export class Play extends Component {
   constructor(props) {
@@ -61,8 +62,13 @@ export class Play extends Component {
       let correctAnswer = newData[1];
       let incorrectAnswers = newData[2];
       let allAnswers = [correctAnswer, ...incorrectAnswers];
-
-      this.setState({ curQ: question, corA: correctAnswer, curA: allAnswers });
+      let shuffleAnswers = shuffle(allAnswers);
+      console.log(shuffleAnswers);
+      this.setState({
+        curQ: question,
+        corA: correctAnswer,
+        curA: shuffleAnswers
+      });
       this.setState({
         chosenAnswer: false,
         didAnswer: false,
@@ -75,22 +81,21 @@ export class Play extends Component {
   }
 
   render() {
-    let curQNum = this.state.curQNum;
     return (
       <div className="Play">
         <p>
-          Question {curQNum}/{this.props.totalQ}
+          Question {this.state.curQNum}/{this.props.totalQ}
         </p>
         <p>Score: {this.state.score}</p>
         <p>{this.state.curQ}</p>
         {this.state.curA.map(a => (
           <form>
-            <label key={curQNum}>
+            <label key={this.state.curQNum}>
               <input
                 type="radio"
                 onChange={this.handleChange}
                 value={a}
-                name={this.props.curQNum}
+                name={this.state.curQNum}
                 checked={this.state.value === a ? true : false}
                 key={a}
                 id={a}
