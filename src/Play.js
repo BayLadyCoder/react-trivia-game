@@ -6,7 +6,7 @@ export class Play extends Component {
   static defaultProps = {
     emoji: {
       correct: ["😃", "😄", "😇", "😍", "😊", "🤩", "😎", "🤓"],
-      incorrect: ["😢", "😰", "😫", "😓", "🙄", "☹️", "😮", "😮"]
+      incorrect: ["😢", "😰", "😫", "😓", "🙄", "🤢", "😮", "😮"]
     }
   };
   constructor(props) {

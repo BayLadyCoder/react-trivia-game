@@ -1,15 +1,22 @@
 import React, { Component } from "react";
+import "./GameEnd.css";
 
 export class GameEnd extends Component {
   render() {
     return (
-      <div>
-        <div>Category: {this.props.category}</div>
-        <div>Total Questions: {this.props.totalQ}</div>
-        <div>
-          Your Score: {this.props.score}/{this.props.totalQ}
+      <div className="GameEnd">
+        <button id="GameEnd-btn" onClick={this.props.newGame}>
+          New Game
+        </button>
+        <div className="GameEnd-text">
+          <strong>Category:</strong> {this.props.category}
         </div>
-        <button onClick={this.props.newGame}>New Game</button>
+        <div className="GameEnd-text">
+          <strong>Total Questions:</strong> {this.props.totalQ}
+        </div>
+        <div className="GameEnd-text">
+          <strong>Your Score:</strong> {this.props.score}/{this.props.totalQ}
+        </div>
       </div>
     );
   }
