@@ -1,0 +1,16 @@
+.GameStart {
+    color: white;
+}
+
+.GameStart-loading {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(213, 213, 213);
+    font-size: 30px;
+}

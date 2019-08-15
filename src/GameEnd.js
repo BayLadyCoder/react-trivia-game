@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./GameEnd.css";
+import "./css/GameEnd.css";
 
 export class GameEnd extends Component {
   render() {

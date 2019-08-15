@@ -53,11 +53,12 @@ function shuffle(array) {
   return array;
 }
 
-// Used like so
-// var arr = [2, 11, 37, 42];
-// arr = shuffle(arr);
-// console.log(arr);
+function randomEmoji(arr) {
+  const randIndex = Math.floor(Math.random() * arr.length);
+  const emoji = arr[randIndex];
+  return emoji;
+}
 
 export default fixString;
 
-export { shuffle };
+export { shuffle, randomEmoji };

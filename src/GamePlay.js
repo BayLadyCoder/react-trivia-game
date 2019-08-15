@@ -1,100 +1,178 @@
 import React, { Component } from "react";
-import "./GamePlay.css";
-import axios from "axios";
-import fixString, { shuffle } from "./Helpers.js";
-import Play from "./Play";
-import GameEnd from "./GameEnd";
+import "./css/GamePlay.css";
+import { shuffle, randomEmoji } from "./Helpers";
 
 export class GamePlay extends Component {
+  static defaultProps = {
+    emoji: {
+      correct: ["😃", "😄", "😇", "😍", "😊", "🤩", "😎", "🤓"],
+      incorrect: ["😢", "😰", "😫", "😓", "🙄", "🤢", "😮", "😮"]
+    }
+  };
   constructor(props) {
     super(props);
     this.state = {
-      data: "",
-      ready: false,
-      curQuestion: "",
-      curAnswers: [],
-      correctAnswer: "",
-      curQ: 0,
+      curQNum: 0,
+      curQ: this.props.curQ,
+      corA: this.props.corA,
+      curA: this.props.curA,
+      value: null,
+      didAnswer: false,
+      chosenAnswer: null,
       totalQ: this.props.totalQ,
-      category: this.props.catName,
-      isDone: false,
       disabled: false,
-      gameScore: 0
+      ready: this.props.ready,
+      score: 0
     };
-    this.gameIsDone = this.gameIsDone.bind(this);
-    this.gameScore = this.gameScore.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
-  async componentDidMount() {
-    const totalQ = this.props.totalQ;
-    const catId = this.props.catId;
-    const base_url = "https://opentdb.com/api.php?";
-    const url = base_url + `amount=${totalQ}&category=${catId}&encode=url3986`;
-    const res = await axios.get(url);
-    //
-    const data = res.data.results;
-    this.setState({ data: data });
-
-    const decoded = fixString(this.state.data);
-    this.setState({ ready: decoded.ready });
-    this.getCurData(this.state.ready);
+  handleChange(e) {
+    this.setState({ value: e.target.value });
   }
 
-  gameIsDone() {
-    this.setState({ isDone: true });
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.value !== null) {
+      this.setState({
+        didAnswer: true,
+        chosenAnswer: this.state.value,
+        disabled: true
+      });
+      if (this.state.value === this.state.corA) {
+        this.setState({ score: this.state.score + 1 });
+      }
+
+      this.setState({ value: null });
+    }
   }
 
-  gameScore(score) {
-    this.setState({ gameScore: score });
+  componentWillMount() {
+    const data = this.state.ready;
+    const curQNum = this.state.curQNum;
+    this.getData(data, curQNum);
   }
 
-  getCurData(data) {
-    const newData = data[0];
+  getData(data, curQNum) {
+    this.setState({ curQNum: this.state.curQNum + 1 });
+    const newData = data[curQNum];
     const question = newData[0];
     const correctAnswer = newData[1];
     const incorrectAnswers = newData[2];
     const allAnswers = [correctAnswer, ...incorrectAnswers];
     const shuffleAnswers = shuffle(allAnswers);
-
+    // console.log(shuffleAnswers);
     this.setState({
-      curQuestion: question,
-      correctAnswer: correctAnswer,
-      curAnswers: shuffleAnswers
+      curQ: question,
+      corA: correctAnswer,
+      curA: shuffleAnswers
     });
   }
 
+  handleNext() {
+    const data = this.state.ready;
+    const curQNum = this.state.curQNum;
+    if (curQNum < this.props.totalQ) {
+      this.getData(data, curQNum);
+      this.setState({
+        chosenAnswer: false,
+        didAnswer: false,
+        disabled: false
+      });
+    } else {
+      this.props.gameScore(this.state.score);
+      this.props.gameIsDone();
+    }
+  }
+
   render() {
-    const ready = this.state.ready ? this.state.ready : "not ready";
-    const totalQ = this.state.totalQ;
-    const category = this.state.category;
+    const corEmo = randomEmoji(this.props.emoji.correct);
+    const incorEmo = randomEmoji(this.props.emoji.incorrect);
+    const currentQuestion = this.state.curQ;
+    const nextButton = (
+      <button className="GamePlay-game-btnNext" onClick={this.handleNext}>
+        NEXT &#10095;
+      </button>
+    );
+
+    const correctColor = { color: "#00ed00" };
     return (
       <div className="GamePlay">
-        {!this.state.isDone ? (
-          this.state.ready &&
-          this.state.curQuestion &&
-          this.state.curAnswers ? (
-            <div>
-              <Play
-                curQ={this.state.curQuestion}
-                curA={this.state.curAnswers}
-                corA={this.state.correctAnswer}
-                totalQ={totalQ}
-                ready={ready}
-                gameIsDone={this.gameIsDone}
-                gameScore={this.gameScore}
-              />
+        <div className="GamePlay-scoreboard">
+          <p>
+            Question {this.state.curQNum}/{this.props.totalQ}
+          </p>
+          <p>Score {this.state.score}</p>
+        </div>
+
+        <div className="GamePlay-gameContainer">
+          <p className="GamePlay-question">
+            <strong>{currentQuestion}</strong>
+          </p>
+          <div className="GamePlay-game center">
+            <div className="GamePlay-game-answers">
+              {this.state.curA.map(a => (
+                <form key={a}>
+                  <label
+                    key={a}
+                    className={this.state.value === a ? "checked" : "unchecked"}
+                  >
+                    <input
+                      type="radio"
+                      onChange={this.handleChange}
+                      value={a}
+                      name={this.state.curQNum}
+                      checked={this.state.value === a ? true : false}
+                      key={a}
+                      id={a}
+                      disabled={this.state.disabled}
+                      required={true}
+                    />
+                    {a}
+                  </label>
+                </form>
+              ))}
             </div>
-          ) : (
-            <div>Loading</div>
-          )
-        ) : (
-          <GameEnd
-            totalQ={totalQ}
-            category={category}
-            score={this.state.gameScore}
-            newGame={this.props.newGameBtn}
-          />
-        )}
+            <div className="GamePlay-game-button">
+              {this.state.didAnswer ? (
+                this.state.chosenAnswer === this.state.corA ? (
+                  <div className="GamePlay-game-button ">
+                    <p className="mb-5 mt-0 reveal-answer correct">
+                      <strong style={correctColor}>
+                        &#10003; {this.state.chosenAnswer}
+                      </strong>{" "}
+                      is Correct {corEmo}
+                    </p>
+                    {nextButton}
+                  </div>
+                ) : (
+                  <div className="GamePlay-game-button ">
+                    <div className="center">
+                      <p className="mb-5 mt-0 reveal-answer incorrect">
+                        <strong>&#10008; {this.state.chosenAnswer}</strong> is
+                        incorrect. {incorEmo}
+                      </p>
+                      <p className="mb-5 mt-0 reveal-answer answer">
+                        The Answer is <strong>{this.state.corA}</strong>
+                      </p>
+                    </div>
+                    {nextButton}
+                  </div>
+                )
+              ) : (
+                <button
+                  className="GamePlay-game-button GamePlay-game-btnAnswer"
+                  onClick={this.handleSubmit}
+                >
+                  Answer
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import TriviaGame from "./TriviaGame";
 
-import "./App.css";
+import "./css/App.css";
 
 function App() {
   return (

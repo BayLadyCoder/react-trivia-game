@@ -1,4 +1,4 @@
-.Play {
+.GamePlay {
     color: #fff;
     width:550px;
 }
@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.Play-scoreboard {
+.GamePlay-scoreboard {
     display: flex;
     justify-content: space-between;
     font-size: 25px;
@@ -19,19 +19,19 @@
     color: rgb(254, 217, 6);
 }
 
-.Play-question {
+.GamePlay-question {
     font-size: 23px;
     text-align: center;
     margin-top: 30px;
 }
 
-.Play-game-answers {
+.GamePlay-game-answers {
     font-size: 22px;
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
-.Play-game-btnAnswer, .Play-game-btnNext {
+.GamePlay-game-btnAnswer, .GamePlay-game-btnNext {
     margin-top: 25px;
     font-size: 27px;
     cursor: pointer;
@@ -45,14 +45,14 @@
 }
 
 
-.Play-game-btnAnswer:hover {
+.GamePlay-game-btnAnswer:hover {
     background-color: rgb(47, 78, 255);
     color: #fff;
     border:  none;
 }
 
 
-.Play-game-btnNext:hover {
+.GamePlay-game-btnNext:hover {
     background-color: rgb(0, 181, 0);
     color: #fff;
     border:  none;
@@ -71,7 +71,7 @@ input[type=radio] {
     margin-bottom: 18px;
   }
 
-.Play-game-button {
+.GamePlay-game-button {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -101,10 +101,10 @@ input[type=radio] {
 
 
 @media only screen and (max-width: 600px) {
-    .Play {
+    .GamePlay {
         width:300px;
     }
-    .Play-scoreboard {
+    .GamePlay-scoreboard {
         font-size: 20px;
         padding: 0 ;
     justify-content: space-around;
@@ -112,29 +112,29 @@ input[type=radio] {
              
     }
 
-    .Play-question {
+    .GamePlay-question {
         font-size: 18px;
         margin-top: 20px;
     }
 
-    .Play-game-answers {
+    .GamePlay-game-answers {
         font-size: 16px;
         margin-top: 5px;
     }
 
-    .Play-game-btnAnswer, .Play-game-btnNext {
+    .GamePlay-game-btnAnswer, .GamePlay-game-btnNext {
         margin-top: 10px;
         font-size: 16px;
     padding: 5px 18px;
 
     }
-    .Play-game-btnAnswer{
+    .GamePlay-game-btnAnswer{
         background-color: rgb(47, 78, 255);
         color: #fff;
 
     }
 
-    .Play-game-btnNext {
+    .GamePlay-game-btnNext {
         background-color: rgb(0, 181, 0);
         color: #fff;
     }

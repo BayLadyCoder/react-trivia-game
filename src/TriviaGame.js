@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "./TriviaGame.css";
+import "./css/TriviaGame.css";
 import NewGameForm from "./NewGameForm";
-
-import GamePlay from "./GamePlay";
+import GameStart from "./GameStart";
 
 export class TriviaGame extends Component {
   constructor(props) {
@@ -37,7 +36,7 @@ export class TriviaGame extends Component {
       !this.state.ready || this.state.startNewGame ? (
         <NewGameForm create={this.create} />
       ) : (
-        <GamePlay
+        <GameStart
           totalQ={totalQ}
           catId={id}
           catName={catName}

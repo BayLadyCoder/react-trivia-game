@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Categories from "./Categories";
-import "./NewGameForm.css";
+import "./css/NewGameForm.css";
 
 export class NewGameForm extends Component {
   static defaultProps = Categories;
