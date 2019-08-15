@@ -74,7 +74,7 @@ export class NewGameForm extends Component {
               </label>
             ))}
           </div>
-          <button className="btn-startgame">Start Game</button>
+          <button className="btn-startgame">Start Game &#10154;</button>
         </form>
       </div>
     );

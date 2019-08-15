@@ -33,11 +33,33 @@
 .Play-game-btnAnswer, .Play-game-btnNext {
     margin-top: 25px;
     font-size: 27px;
+    cursor: pointer;
+    padding: 7px 25px;
+    border-radius: 7px;
+    font-weight: bold;
+
 }
 
 
+.Play-game-btnAnswer:hover {
+    background-color: rgb(47, 78, 255);
+    color: #fff;
+    border:  none;
+}
+
+
+.Play-game-btnNext:hover {
+    background-color: rgb(0, 198, 0);
+    color: #fff;
+    border:  none;
+}
+
 .reveal-answer {
     font-size: 20px;
+}
+
+.answer {
+    color: yellow;
 }
 input[type=radio] {
     cursor: pointer;

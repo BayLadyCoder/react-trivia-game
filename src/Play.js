@@ -3,6 +3,12 @@ import "./Play.css";
 import { shuffle } from "./Helpers";
 
 export class Play extends Component {
+  static defaultProps = {
+    emoji: {
+      correct: ["😃", "😄", "😇", "😍", "😊", "🤩", "😎", "🤓"],
+      incorrect: ["😢", "😰", "😫", "😓", "🙄", "☹️", "😮", "😮"]
+    }
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -22,13 +28,7 @@ export class Play extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNext = this.handleNext.bind(this);
-
-    console.log(
-      "CONSTRUCT PLAY",
-      this.state.curQ,
-      this.state.corA,
-      this.state.curA
-    );
+    this.randomEmoji = this.randomEmoji.bind(this);
   }
 
   handleChange(e) {
@@ -80,7 +80,15 @@ export class Play extends Component {
     }
   }
 
+  randomEmoji(arr) {
+    let randIndex = Math.floor(Math.random() * arr.length);
+    let emoji = arr[randIndex];
+    return emoji;
+  }
+
   render() {
+    let corEmo = this.randomEmoji(this.props.emoji.correct);
+    let incorEmo = this.randomEmoji(this.props.emoji.incorrect);
     return (
       <div className="Play">
         <div className="Play-scoreboard">
@@ -118,22 +126,24 @@ export class Play extends Component {
                 this.state.chosenAnswer === this.state.corA ? (
                   <div className="Play-game-button correct">
                     <p className="mb-5 mt-0 reveal-answer">
-                      <strong>{this.state.chosenAnswer}</strong> is Correct
+                      <strong>&#10004; {this.state.chosenAnswer}</strong> is
+                      Correct {corEmo}
                     </p>
                     <button
                       className="Play-game-btnNext"
                       onClick={this.handleNext}
                     >
-                      NEXT
+                      NEXT &#10095;
                     </button>
                   </div>
                 ) : (
-                  <div className="Play-game-button incorrect">
+                  <div className="Play-game-button ">
                     <div className="center">
-                      <p className="mb-5 mt-0 reveal-answer">
-                        <strong>{this.state.chosenAnswer}</strong> is incorrect.
+                      <p className="mb-5 mt-0 reveal-answer incorrect">
+                        <strong>&#10008; {this.state.chosenAnswer}</strong> is
+                        incorrect. {incorEmo}
                       </p>
-                      <p className="mb-5 mt-0 reveal-answer">
+                      <p className="mb-5 mt-0 reveal-answer answer">
                         The Answer is <strong>{this.state.corA}</strong>
                       </p>
                     </div>
@@ -141,7 +151,7 @@ export class Play extends Component {
                       className="Play-game-btnNext"
                       onClick={this.handleNext}
                     >
-                      NEXT
+                      NEXT &#10095;
                     </button>
                   </div>
                 )
