@@ -124,7 +124,19 @@ input[type=radio] {
 
     .Play-game-btnAnswer, .Play-game-btnNext {
         margin-top: 10px;
-        font-size: 20px;
+        font-size: 16px;
+    padding: 5px 18px;
+
+    }
+    .Play-game-btnAnswer{
+        background-color: rgb(47, 78, 255);
+        color: #fff;
+
+    }
+
+    .Play-game-btnNext {
+        background-color: rgb(0, 181, 0);
+        color: #fff;
     }
 
     .reveal-answer {

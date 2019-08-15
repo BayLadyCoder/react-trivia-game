@@ -15,7 +15,7 @@ export class GameEnd extends Component {
           <strong>Total Questions:</strong> {this.props.totalQ}
         </div>
         <div className="GameEnd-text">
-          <strong>Your Score:</strong> {this.props.score}/{this.props.totalQ}
+          <strong>Your Score:</strong> {this.props.score} / {this.props.totalQ}
         </div>
       </div>
     );
