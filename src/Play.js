@@ -90,6 +90,8 @@ export class Play extends Component {
     const corEmo = this.randomEmoji(this.props.emoji.correct);
     const incorEmo = this.randomEmoji(this.props.emoji.incorrect);
     const currentQuestion = this.state.curQ;
+
+    const correctColor = { color: "#00ed00" };
     return (
       <div className="Play">
         <div className="Play-scoreboard">
@@ -132,8 +134,10 @@ export class Play extends Component {
                 this.state.chosenAnswer === this.state.corA ? (
                   <div className="Play-game-button ">
                     <p className="mb-5 mt-0 reveal-answer correct">
-                      <strong>&#10004; {this.state.chosenAnswer}</strong> is
-                      Correct {corEmo}
+                      <strong style={correctColor}>
+                        &#10003; {this.state.chosenAnswer}
+                      </strong>{" "}
+                      is Correct {corEmo}
                     </p>
                     <button
                       className="Play-game-btnNext"
