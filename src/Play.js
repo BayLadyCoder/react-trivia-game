@@ -22,7 +22,6 @@ export class Play extends Component {
       totalQ: this.props.totalQ,
       disabled: false,
       ready: this.props.ready,
-      curReady: "",
       score: 0
     };
     this.handleChange = this.handleChange.bind(this);
@@ -55,14 +54,14 @@ export class Play extends Component {
     console.log("CLICKED EVENT");
     this.setState({ curQNum: this.state.curQNum + 1 });
     if (this.state.curQNum < this.props.totalQ) {
-      let ready = this.state.ready;
-      let curQNum = this.state.curQNum;
-      let newData = ready[curQNum];
-      let question = await newData[0];
-      let correctAnswer = newData[1];
-      let incorrectAnswers = newData[2];
-      let allAnswers = [correctAnswer, ...incorrectAnswers];
-      let shuffleAnswers = shuffle(allAnswers);
+      const ready = this.state.ready;
+      const curQNum = this.state.curQNum;
+      const newData = ready[curQNum];
+      const question = await newData[0];
+      const correctAnswer = newData[1];
+      const incorrectAnswers = newData[2];
+      const allAnswers = [correctAnswer, ...incorrectAnswers];
+      const shuffleAnswers = shuffle(allAnswers);
       console.log(shuffleAnswers);
       this.setState({
         curQ: question,
@@ -81,8 +80,8 @@ export class Play extends Component {
   }
 
   randomEmoji(arr) {
-    let randIndex = Math.floor(Math.random() * arr.length);
-    let emoji = arr[randIndex];
+    const randIndex = Math.floor(Math.random() * arr.length);
+    const emoji = arr[randIndex];
     return emoji;
   }
 
@@ -90,6 +89,11 @@ export class Play extends Component {
     const corEmo = this.randomEmoji(this.props.emoji.correct);
     const incorEmo = this.randomEmoji(this.props.emoji.incorrect);
     const currentQuestion = this.state.curQ;
+    const nextButton = (
+      <button className="Play-game-btnNext" onClick={this.handleNext}>
+        NEXT &#10095;
+      </button>
+    );
 
     const correctColor = { color: "#00ed00" };
     return (
@@ -139,12 +143,7 @@ export class Play extends Component {
                       </strong>{" "}
                       is Correct {corEmo}
                     </p>
-                    <button
-                      className="Play-game-btnNext"
-                      onClick={this.handleNext}
-                    >
-                      NEXT &#10095;
-                    </button>
+                    {nextButton}
                   </div>
                 ) : (
                   <div className="Play-game-button ">
@@ -157,12 +156,7 @@ export class Play extends Component {
                         The Answer is <strong>{this.state.corA}</strong>
                       </p>
                     </div>
-                    <button
-                      className="Play-game-btnNext"
-                      onClick={this.handleNext}
-                    >
-                      NEXT &#10095;
-                    </button>
+                    {nextButton}
                   </div>
                 )
               ) : (

@@ -1,5 +1,5 @@
 function decode(string) {
-  let newString = decodeURIComponent(string);
+  const newString = decodeURIComponent(string);
   return newString;
 }
 
@@ -12,21 +12,21 @@ function fixString(data) {
   let count = 1;
 
   data.map(d => {
-    let q = decode(d.question);
-    let ca = decode(d.correct_answer);
-    let ica = d.incorrect_answers.map(ia => decode(ia));
+    const q = decode(d.question);
+    const ca = decode(d.correct_answer);
+    const ica = d.incorrect_answers.map(ia => decode(ia));
 
     questions.push(q);
     correctAns.push(ca);
     incorrectAns.push(ica);
 
-    let strCount = "Q" + count.toString();
+    const strCount = "Q" + count.toString();
     eachQ.push([q, ca, ica]);
 
     count++;
   });
 
-  let decoded = {
+  const decoded = {
     ready: eachQ
   };
   console.log("decoded", decoded);
@@ -34,7 +34,7 @@ function fixString(data) {
 }
 
 function shuffle(array) {
-  var currentIndex = array.length,
+  let currentIndex = array.length,
     temporaryValue,
     randomIndex;
 

@@ -29,11 +29,11 @@ export class TriviaGame extends Component {
   }
 
   render() {
-    let totalQ = this.state.newGame.totalQuestions;
-    let id = this.state.newGame.id;
-    let catName = this.state.newGame.category;
+    const totalQ = this.state.newGame.totalQuestions;
+    const id = this.state.newGame.id;
+    const catName = this.state.newGame.category;
 
-    let game =
+    const game =
       !this.state.ready || this.state.startNewGame ? (
         <NewGameForm create={this.create} />
       ) : (

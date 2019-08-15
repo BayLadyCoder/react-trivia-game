@@ -30,12 +30,12 @@ export class GamePlay extends Component {
     const catId = this.props.catId;
     const base_url = "https://opentdb.com/api.php?";
     const url = base_url + `amount=${totalQ}&category=${catId}&encode=url3986`;
-    let res = await axios.get(url);
-    // console.log("RESPONSE", res.data.results);
-    let data = res.data.results;
+    const res = await axios.get(url);
+    //
+    const data = res.data.results;
     this.setState({ data: data });
 
-    let decoded = fixString(this.state.data);
+    const decoded = fixString(this.state.data);
     this.setState({ ready: decoded.ready });
     this.getCurData(this.state.ready);
   }
@@ -49,14 +49,13 @@ export class GamePlay extends Component {
   }
 
   getCurData(data) {
-    console.log("DATA", data);
-    let newData = data[0];
-    let question = newData[0];
-    let correctAnswer = newData[1];
-    let incorrectAnswers = newData[2];
-    let allAnswers = [correctAnswer, ...incorrectAnswers];
-    let shuffleAnswers = shuffle(allAnswers);
-    console.log(shuffleAnswers);
+    const newData = data[0];
+    const question = newData[0];
+    const correctAnswer = newData[1];
+    const incorrectAnswers = newData[2];
+    const allAnswers = [correctAnswer, ...incorrectAnswers];
+    const shuffleAnswers = shuffle(allAnswers);
+
     this.setState({
       curQuestion: question,
       correctAnswer: correctAnswer,
@@ -65,9 +64,9 @@ export class GamePlay extends Component {
   }
 
   render() {
-    let ready = this.state.ready ? this.state.ready : "not ready";
-    let totalQ = this.state.totalQ;
-    let category = this.state.category;
+    const ready = this.state.ready ? this.state.ready : "not ready";
+    const totalQ = this.state.totalQ;
+    const category = this.state.category;
     return (
       <div className="GamePlay">
         {!this.state.isDone ? (
