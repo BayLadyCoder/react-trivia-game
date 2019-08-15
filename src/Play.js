@@ -130,8 +130,8 @@ export class Play extends Component {
             <div className="Play-game-button">
               {this.state.didAnswer ? (
                 this.state.chosenAnswer === this.state.corA ? (
-                  <div className="Play-game-button correct">
-                    <p className="mb-5 mt-0 reveal-answer">
+                  <div className="Play-game-button ">
+                    <p className="mb-5 mt-0 reveal-answer correct">
                       <strong>&#10004; {this.state.chosenAnswer}</strong> is
                       Correct {corEmo}
                     </p>
