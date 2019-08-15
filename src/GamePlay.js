@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./css/GamePlay.css";
 import { shuffle, randomEmoji } from "./Helpers";
 
+// This Component run the game by displaying each question and its answers
+// also showing the chosen Category and current player's Score
 export class GamePlay extends Component {
   static defaultProps = {
     emoji: {
@@ -30,10 +32,12 @@ export class GamePlay extends Component {
     this.getData = this.getData.bind(this);
   }
 
+  // Handle when user is choosing a choice from RADIO BUTTON
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
 
+  // Handle when user click ANSWER BUTTON
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.value !== null) {
@@ -50,12 +54,14 @@ export class GamePlay extends Component {
     }
   }
 
+  // Get first question and answers before the component mounts
   componentWillMount() {
     const data = this.state.ready;
     const curQNum = this.state.curQNum;
     this.getData(data, curQNum);
   }
 
+  // Function for getting current question and answers to render
   getData(data, curQNum) {
     this.setState({ curQNum: this.state.curQNum + 1 });
     const newData = data[curQNum];
@@ -64,7 +70,6 @@ export class GamePlay extends Component {
     const incorrectAnswers = newData[2];
     const allAnswers = [correctAnswer, ...incorrectAnswers];
     const shuffleAnswers = shuffle(allAnswers);
-    // console.log(shuffleAnswers);
     this.setState({
       curQ: question,
       corA: correctAnswer,
@@ -72,6 +77,8 @@ export class GamePlay extends Component {
     });
   }
 
+  // Get the next question and answers when user click NEXT BUTTON
+  // and reset some state
   handleNext() {
     const data = this.state.ready;
     const curQNum = this.state.curQNum;
@@ -89,8 +96,8 @@ export class GamePlay extends Component {
   }
 
   render() {
-    const corEmo = randomEmoji(this.props.emoji.correct);
-    const incorEmo = randomEmoji(this.props.emoji.incorrect);
+    const corEmo = randomEmoji(this.props.emoji.correct); // Random Emoji for Correct Answer
+    const incorEmo = randomEmoji(this.props.emoji.incorrect); // Random Emoji for Incorrect Answer
     const currentQuestion = this.state.curQ;
     const nextButton = (
       <button className="GamePlay-game-btnNext" onClick={this.handleNext}>

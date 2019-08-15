@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./css/GameEnd.css";
 
+// This Component shows the Summary at the end of the game
+// For examples, the chosen Category, the total Questions, and the final Score
 export class GameEnd extends Component {
   render() {
     return (

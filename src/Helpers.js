@@ -1,29 +1,19 @@
+// To  decode String URLs
 function decode(string) {
   const newString = decodeURIComponent(string);
   return newString;
 }
 
+// Select, decode, and organize the (only) data that we need from API request
 function fixString(data) {
-  let questions = [],
-    correctAns = [],
-    incorrectAns = [],
-    eachQ = [],
-    allQ = [];
-  let count = 1;
+  let eachQ = [];
 
   data.map(d => {
     const q = decode(d.question);
     const ca = decode(d.correct_answer);
     const ica = d.incorrect_answers.map(ia => decode(ia));
 
-    questions.push(q);
-    correctAns.push(ca);
-    incorrectAns.push(ica);
-
-    const strCount = "Q" + count.toString();
     eachQ.push([q, ca, ica]);
-
-    count++;
   });
 
   const decoded = {
@@ -33,18 +23,16 @@ function fixString(data) {
   return decoded;
 }
 
+// To Shuffle array to make all answers order randomly
+// Return a shuffled array
 function shuffle(array) {
-  let currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
+  let currentIndex = array.length;
+  let temporaryValue;
 
-  // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
+    const randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
 
-    // And swap it with the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -53,6 +41,8 @@ function shuffle(array) {
   return array;
 }
 
+// Return a random element from an array
+// (this function only use for emoji array in this program)
 function randomEmoji(arr) {
   const randIndex = Math.floor(Math.random() * arr.length);
   const emoji = arr[randIndex];
