@@ -16,6 +16,7 @@
     font-size: 25px;
     position: static;
     padding: 0 20px;
+    color: rgb(254, 217, 6);
 }
 
 .Play-question {
@@ -34,10 +35,13 @@
     margin-top: 25px;
     font-size: 27px;
     cursor: pointer;
-    padding: 7px 25px;
+    padding: 9px 25px;
     border-radius: 7px;
     font-weight: bold;
+    border:  none;
 
+    -webkit-transition: background-color 0.3s, color 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 
@@ -49,7 +53,7 @@
 
 
 .Play-game-btnNext:hover {
-    background-color: rgb(0, 198, 0);
+    background-color: rgb(0, 181, 0);
     color: #fff;
     border:  none;
 }
@@ -59,7 +63,7 @@
 }
 
 .answer {
-    color: yellow;
+    color: rgb(254, 217, 6);
 }
 input[type=radio] {
     cursor: pointer;
@@ -90,6 +94,10 @@ input[type=radio] {
 
 
 }
+
+
+.checked { color: rgb(87, 154, 255);}
+.unchecked {color: #fff;}
 
 
 @media only screen and (max-width: 600px) {

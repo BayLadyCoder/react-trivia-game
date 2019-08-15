@@ -87,24 +87,30 @@ export class Play extends Component {
   }
 
   render() {
-    let corEmo = this.randomEmoji(this.props.emoji.correct);
-    let incorEmo = this.randomEmoji(this.props.emoji.incorrect);
+    const corEmo = this.randomEmoji(this.props.emoji.correct);
+    const incorEmo = this.randomEmoji(this.props.emoji.incorrect);
+    const currentQuestion = this.state.curQ;
     return (
       <div className="Play">
         <div className="Play-scoreboard">
           <p>
             Question {this.state.curQNum}/{this.props.totalQ}
           </p>
-          <p>Score: {this.state.score}</p>
+          <p>Score {this.state.score}</p>
         </div>
 
         <div className="Play-gameContainer">
-          <p className="Play-question">{this.state.curQ}</p>
+          <p className="Play-question">
+            <strong>{currentQuestion}</strong>
+          </p>
           <div className="Play-game center">
             <div className="Play-game-answers">
               {this.state.curA.map(a => (
                 <form key={a}>
-                  <label key={a}>
+                  <label
+                    key={a}
+                    className={this.state.value === a ? "checked" : "unchecked"}
+                  >
                     <input
                       type="radio"
                       onChange={this.handleChange}
