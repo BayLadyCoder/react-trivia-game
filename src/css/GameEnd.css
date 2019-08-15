@@ -1,24 +1,20 @@
 .GameEnd {
     margin-top: 40px;
-    /* height: 200px; */
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-around;
     align-items: center;
-    /* border: 1px solid #fff; */
     padding: 60px 100px;
 }
 
 .GameEnd-text {
-font-size: 20px;
-margin-bottom: 20px;
-text-align: center;
-color: rgb(255, 255, 255);
--webkit-transition: color 0.3s; /* For Safari 3.1 to 6.0 */
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    -webkit-transition: color 0.3s; /* For Safari 3.1 to 6.0 */
     transition: color 0.3s;
 }
-
-
 
 #GameEnd-btn {
     cursor: pointer;
@@ -28,20 +24,19 @@ color: rgb(255, 255, 255);
     border-radius: 7px;
     border: #fff 3px solid;
     font-weight: bold;
+    background-color: #fff;
     box-shadow: 1px 2px 3px 0px #b5b5b5;
     -webkit-transition: box-shadow 0.3s, background-color 0.3s, color 0.3s; /* For Safari 3.1 to 6.0 */
     transition: box-shadow 0.3s, background-color 0.3s, color 0.3s, padding 0.3s, border-radius 0.3s;
     }
 
-
 #GameEnd-btn:hover {
-        background-color: rgb(0, 0, 0);
-        color: #5182ff;
-        border: #5182ff 3px solid;
-      box-shadow: 5px 4px 7px 3px #5182ff;
+    background-color: rgb(0, 0, 0);
+    color: #5182ff;
+    border: #5182ff 3px solid;
+    box-shadow: 5px 4px 7px 3px #5182ff;
     padding: 8px 50px;
     border-radius: 50px;
-
 }
 
 #GameEnd-btn:hover ~  .GameEnd-text {
@@ -49,21 +44,19 @@ color: rgb(255, 255, 255);
 }
 
 
-
 @media only screen and (max-width: 600px) {
-
-
     .GameEnd-text {
         font-size: 20px;
         margin-bottom: 15px;
-    color: #5f8cff;
+        color: #5f8cff;
+    }
 
-        }
     .GameEnd {
-    width: 100vw;
+        width: 100vw;
         margin-top: 40px;
         padding: 40px 0px;
     }
+
     #GameEnd-btn {
         margin-top: 15px;
         font-size: 20px;
@@ -71,13 +64,11 @@ color: rgb(255, 255, 255);
         background-color: rgb(0, 0, 0);
         color: #5182ff;
         border: #5182ff 3px solid;
-      box-shadow: 5px 4px 7px 3px #5182ff;
-  
-        }
+        box-shadow: 5px 4px 7px 3px #5182ff;
+    }
 
-        #GameEnd-btn:hover {
-        padding: 5px 50px;
-    
+    #GameEnd-btn:hover {
+        padding: 5px 50px; 
     }
 
 }
