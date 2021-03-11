@@ -10,7 +10,7 @@ How to run my code
 
 OR
 
-Open your browser and brows this URL https://bayladycoder.github.io/work-product-bc/ to see the project.
+Open your browser and brows this URL https://bayladycoder.github.io/react-trivia-game/ to see the project.
 
 
 Enjoy,
