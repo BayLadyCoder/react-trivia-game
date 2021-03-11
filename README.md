@@ -1,6 +1,6 @@
 How to run my code
 
-1. Download my code from this repository (https://github.com/BayLadyCoder/work-product-bc)
+1. Download my code from this repository (https://github.com/BayLadyCoder/react-trivia-game)
 
 2. Make sure you have Node.js installed in your computer.
 
