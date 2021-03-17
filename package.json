@@ -1,6 +1,6 @@
 {
-  "homepage": "https://bayladycoder.github.io/work-product-bc/",
-  "name": "work-product-bc",
+  "homepage": "https://bayladycoder.github.io/react-trivia-game/",
+  "name": "react-trivia-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

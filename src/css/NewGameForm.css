@@ -1,29 +1,39 @@
 .NewGameForm {
-    width: 400px;
-    padding: 30px 0px;
+    width: 600px;
+    padding: 30px 0px 50px 0px;
     background-color: #fff;  
-    background-color: rgb(219, 221, 255);
+    background-color: rgb(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #ffffff;
 }
 .NewGameForm-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #ffffff;
+
 }
+
+
 
 #totalQuestionsLabel {
     color: #000;
     margin: 0 10px 10px 10px;
     text-align: center;
+    color: #ffffff;
+    font-size: 19px;
+
 }
 
 select {
+    background-color: rgb(21, 21, 21);
+    color: #ffffff;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .NewGameForm-totalQuestions {
@@ -32,10 +42,10 @@ select {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
 .NewGameForm-categories {
-    font-size: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,11 +54,11 @@ select {
 }
 
 .NewGameForm-category {
-    width: 190px;
-    background-color: #fff;
-    background-color: rgb(219, 221, 255);
-    color: #000;
+    width: 220px;
     margin-bottom: 5px;
+    background-color: rgb(0, 0, 0,0.0);
+    color: #ffffff;
+    font-size: 18px;
 }
 
 input[type=radio] {
@@ -56,34 +66,33 @@ input[type=radio] {
     cursor: pointer;
     margin-right: 5px;
     margin-bottom: 8px;
+    
   }
 
 .btn-startgame {
-        cursor: pointer;
-      font-size: 20px;
-      background-color: rgb(49, 104, 255);
-      background-color: rgb(250, 250, 250);
-      color: #fff;
-      color: rgb(48, 48, 48);
-      font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 7px;
-      box-shadow: 2px 3px 4px 1px #939292;
-      -webkit-transition: box-shadow 0.3s, background-color 0.3s, color 0.3s; /* For Safari 3.1 to 6.0 */
-      transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    font-size: 22px;
+    background-color: rgb(255, 207, 49);
+    color: #000000;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 4px 4px 5px 2px #656565;
+    -webkit-transition: box-shadow 0.3s, background-color 0.3s, color 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
   }
 
 .btn-startgame:hover {
-    box-shadow: 2px 2px 3px 1px #bebebe;
-    background-color: rgb(36, 94, 255);
-    color: rgb(255, 255, 255);
-
+    box-shadow: 2px 2px 3px 1px #353535;
+    background-color: rgb(255, 207, 49);
+    background-color: #72aaff;
 }
 
 .ask {
-    font-size: 17px;
+    font-size: 19px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 
@@ -91,9 +100,10 @@ input[type=radio] {
   @media only screen and (max-width: 600px) {
 
     .NewGameForm {
-        width: 100vw;
-        background-color: rgb(0, 0, 0);
-        color: #fff;
+    width: 400px;
+    padding: 20px 0px 40px 0px;
+    margin-top: 20px;
+    color: #fff;
     }
 
     #totalQuestions {
@@ -103,29 +113,21 @@ input[type=radio] {
     }
 
     .ask {
-    font-size: 14px;
-    color: #fff;
-
-        
+        font-size: 16px;
+        color: #fff;  
     }
     #totalQuestionsLabel {
         color: rgb(255, 255, 255);
-
+        font-size: 16px;
     }
 
     select {
         font-size: 13px;
-        color: #fff;
-
     }
-    .NewGameForm-categories {
-        font-size: 14px;
-        color: #fff;
-
-    }
+  
     .NewGameForm-category {
-        background-color: rgb(0, 0, 0);
-        color: #fff;
+        font-size: 14px;
+        width: 180px;
     }
 
     input[type=radio] {
@@ -136,9 +138,34 @@ input[type=radio] {
   .btn-startgame {
     font-size: 16px;
     padding: 8px 15px;
-    border-radius: 7px;
-    box-shadow: 2px 2px 3px 1px #bebebe;
-    background-color: rgb(36, 94, 255);
-    color: rgb(255, 255, 255);
     }
+
+
+  }
+ @media only screen and (max-width: 600px) {
+
+    .NewGameForm {
+    width: 300px;
+
+    }
+}
+
+  @media  only screen and (max-width: 820px) and (orientation:landscape) { 
+      .NewGameForm {
+    width: 700px;
+    padding: 30px 0px 50px 0px;
+    background-color: #fff;  
+    background-color: rgb(0, 0, 0, 0.0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+    .btn-startgame:hover {
+        box-shadow: 2px 2px 3px 1px #353535;
+        background-color: rgb(255, 207, 49);
+    }
+  
   }

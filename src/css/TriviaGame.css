@@ -9,11 +9,21 @@
 .TriviaGame h1 {
     color: rgb(255, 207, 49);
     margin: 30px;
+    font-size: 50px;
 }
 
 @media only screen and (max-width: 600px) {
 
     .TriviaGame h1 {
         margin: 30px 0 0px 0;
+        font-size: 30px;
+
     }
 }
+
+  @media only screen and (max-width: 820px) and (orientation:landscape) { 
+      .TriviaGame h1 {
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+  }
